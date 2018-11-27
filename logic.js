@@ -1,3 +1,7 @@
+
+const appId = config.APP_ID;
+const appKey = config.APP_KEY;
+
 $('.foodBtn').on('click', function(event){
     event.preventDefault();
     $('.food').empty();
@@ -9,7 +13,7 @@ $('.foodBtn').on('click', function(event){
 function foodSearch(search){
 
     $.ajax({
-        url: `https://cors-anywhere.herokuapp.com/https://api.edamam.com/search?q=${search}&app_id=19a73eae&app_key=cd32b0dc695ebb330a2f0badacc538b6`,
+        url: `https://cors-anywhere.herokuapp.com/https://api.edamam.com/search?q=${search}&app_id=${appId}&app_key=${appKey}`,
         method: "GET"
     }).then(function(response){
         // console.log(response)
@@ -41,9 +45,6 @@ function buildRecipes(recipes){
             let ingredientsArray = entry.ingredientLines;
             let ingHolder = $("<div>");
             
-            // ingredientsArray.forEach(function(ingredient){
-            //     ingHolder.append(`<p>${ingredient}</p>`)
-            // })
             if(j <= 2){
                 let card = `<div class="card mx-auto grow m-3" style="width: 22rem;">
                             <img class="card-img-top" src=${entry.image} alt="Card image cap">
